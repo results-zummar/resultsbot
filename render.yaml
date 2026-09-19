@@ -1,0 +1,22 @@
+# Render Blueprint — deploys the bot as a Background Worker (no public URL needed).
+# Deploy from the repo with the bot/ folder set as the root directory.
+services:
+  - type: worker
+    name: najah-telegram-bot
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: NAJAH_AUTOMATION_AUTHORIZED
+        value: "true"
+      - key: NAJAH_BASE_URL
+        value: "https://najah.iq"
+      - key: NAJAH_TIMEOUT_MS
+        value: "30000"
+      - key: RATE_LIMIT_MAX
+        value: "3"
+      - key: RATE_LIMIT_WINDOW_MS
+        value: "3600000"
